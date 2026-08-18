@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanPulse - Task & Schedule Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient Glow Background -->
+    <div class="aura-bg">
+        <div class="aura-node node-1"></div>
+        <div class="aura-node node-2"></div>
+    </div>
+
+    <div class="dashboard-wrapper">
+        <!-- Top Navigation Header -->
+        <header class="top-nav">
+            <div class="brand">
+                <span class="pulse-dot"></span>
+                <span class="brand-title">PlanPulse</span>
+            </div>
+            
+            <div class="nav-right">
+                <div class="greeting" id="greeting">Good day!</div>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Full-Screen Split Layout -->
+        <div class="main-layout">
+            <!-- Left Sidebar: Controls & Creator -->
+            <aside class="sidebar-panel">
+                <!-- Progress Widget -->
+                <div class="widget-card progress-widget">
+                    <div class="widget-header">
+                        <span>Daily Progress</span>
+                        <strong id="progressPercent">0%</strong>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <!-- Input Form -->
+                <form class="bento-form" id="taskForm">
+                    <div class="form-title">Create Task</div>
+                    <div class="input-box">
+                        <i class="fa-solid fa-pen-nib"></i>
+                        <input type="text" id="taskInput" placeholder="what your plan today" required autocomplete="off">
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-box">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input type="text" id="taskDate" placeholder="dd mm yy" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'">
+                        </div>
+                        <div class="input-box">
+                            <i class="fa-regular fa-clock"></i>
+                            <input type="time" id="taskTime">
+                        </div>
+                    </div>
+
+                    <div class="input-box">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <select id="taskCategory">
+                            <option value="Work">Work</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Study">Study</option>
+                            <option value="Health">Health</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="addBtn" class="primary-btn">
+                        <i class="fa-solid fa-plus"></i> Add to Stream
+                    </button>
+                </form>
+            </aside>
+
+            <!-- Right Main Area: Task Stream & Filters -->
+            <section class="stream-panel">
+                <!-- Search & Filters Toolbar -->
+                <div class="toolbar">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="searchInput" placeholder="Search tasks...">
+                    </div>
+
+                    <div class="filter-tabs">
+                        <button class="tab-btn active" data-filter="all">All</button>
+                        <button class="tab-btn" data-filter="pending">Pending</button>
+                        <button class="tab-btn" data-filter="completed">Done</button>
+                    </div>
+                </div>
+
+                <!-- Task Cards List -->
+                <ul class="task-stream" id="taskList"></ul>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState">
+                    <div class="sparkle-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <p>No tasks found. Create a new plan to get started!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Canvas for Confetti -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
